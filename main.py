@@ -12,6 +12,7 @@ async def list_models():
     """
     List all usdz model metadata files
     """
+    print("Hallo")
     return ModelCollection(models=await test_collection.find().to_list(1000))
 
 @app.get("/api/v1/catalog/{file_id}", response_model=Model)
