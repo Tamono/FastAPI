@@ -1,6 +1,5 @@
-from dataclasses import Field
 from typing import Annotated, Optional, List
-from pydantic import BaseModel, BeforeValidator
+from pydantic import BaseModel, BeforeValidator, Field, ConfigDict
 
 PyObjectId = Annotated[str, BeforeValidator(str)]
 
@@ -10,6 +9,10 @@ class Model(BaseModel):
     """
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
     name: str = Field(...)
+    model_config = ConfigDict(
+        populate_by_name=True,
+        arbitrary_types_allowed=True
+    )
 
 
 class ModelCollection(BaseModel):
