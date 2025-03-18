@@ -1,0 +1,4 @@
+fastapi~=0.115.11
+hypercorn==0.14.4
+motor
+pydantic[email]
