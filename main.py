@@ -1,5 +1,8 @@
+import os
 from typing import List
 from uuid import uuid4, UUID
+
+import uvicorn
 from fastapi import FastAPI, HTTPException
 
 from models import Model
@@ -41,3 +44,6 @@ def delete_user(file_id: UUID):
             db.remove(file)
             return file
     raise HTTPException(status_code=404, detail="File not found")
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=os.getenv("PORT", default=8080), log_level="info")
