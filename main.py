@@ -7,15 +7,24 @@ from models import Model, ModelCollection
 
 app = FastAPI()
 
-@app.get("/api/v1/catalog", response_model=List[Model])
+@app.get(
+    "/api/v1/catalog",
+    response_description="List of all models",
+    response_model=ModelCollection,
+    response_model_by_alias=False,
+)
 async def list_models():
     """
     List all usdz model metadata files
     """
-    print("Hallo")
     return ModelCollection(models=await test_collection.find().to_list(1000))
 
-@app.get("/api/v1/catalog/{file_id}", response_model=Model)
+@app.get(
+    "/api/v1/catalog/{file_id}",
+    response_description="Get a single file",
+    response_model=Model,
+    response_model_by_alias=False,
+)
 async def show_file(id: str):
     """
     Get the saved metadata file for a specific UUID.
