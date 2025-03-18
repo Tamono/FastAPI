@@ -1,7 +1,5 @@
-import os
 from typing import List
 from uuid import uuid4, UUID
-import uvicorn
 from fastapi import FastAPI, HTTPException
 from models import Model
 
